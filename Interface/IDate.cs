@@ -4,8 +4,8 @@ namespace JiangH
 {
     public interface IDate
     {
-        Action OnDaysInc { get; set; }
+        Action<(int y, int m, int d)> OnDaysInc { get; set; }
 
-        void Run();
+        void Inc();
     }
 }

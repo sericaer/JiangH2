@@ -40,9 +40,9 @@ namespace JiangH
             systemMgr.relationBranchBusiness.SetRelation(branches.First(), businesses.First());
             systemMgr.relationBranchBusiness.SetRelation(branches.First(), businesses.Last());
 
-            date.OnDaysInc = () =>
+            date.OnDaysInc = ((int y, int m, int d)dateValue) =>
             {
-                systemMgr.OnDaysInc();
+                systemMgr.OnDaysInc(dateValue);
             };
         }
     }

@@ -13,7 +13,7 @@ namespace JiangH
             this.entitys = entitys;
         }
 
-        internal void OnDaysInc()
+        internal void OnDaysInc((int y, int m, int d) dateValue)
         {
             foreach(var entity in entitys)
             {

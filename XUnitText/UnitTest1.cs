@@ -12,11 +12,11 @@ namespace JiangH
         public void Test1()
         {
             RunData runData = new RunData();
-            runData.date.Run();
+            runData.date.Inc();
 
             runData.persons.First().AddComponent(new ComponentProducter());
 
-            runData.date.Run();
+            runData.date.Inc();
         }
     }
 }

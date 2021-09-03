@@ -16,9 +16,9 @@ namespace JiangH
 
         }
 
-        public void OnDaysInc()
+        public void OnDaysInc((int y, int m, int d) dateValue)
         {
-            productProcess.OnDaysInc();
+            productProcess.OnDaysInc(dateValue);
         }
 
         public void Build(IDictionary<Type, List<IEntity>> com2Entitys, RelationManager relationManager)

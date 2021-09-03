@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Branch\Branch.csproj" />
     <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\Date\Date.csproj" />
     <ProjectReference Include="..\Entity\Entity.csproj" />
     <ProjectReference Include="..\GMSystem\GMSystem.csproj" />
     <ProjectReference Include="..\Interface\Interface.csproj" />
