@@ -27,6 +27,7 @@ namespace JiangH
             date = new Date();
 
             entityMgr.AddEntity(Person.Create());
+
             entityMgr.AddEntity(Business.Create());
             entityMgr.AddEntity(Business.Create());
             entityMgr.AddEntity(Branch.Create());

@@ -7,7 +7,7 @@ namespace JiangH
     {
         public Person()
         {
-
+            fullName = "AAA";
         }
 
         public IBranch branch
@@ -18,6 +18,8 @@ namespace JiangH
                 return relation != null ? relation.branch : null;
             }
         }
+
+        public string fullName { get; set; }
 
         public static Person Create()
         {
