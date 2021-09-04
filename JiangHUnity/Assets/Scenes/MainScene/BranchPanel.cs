@@ -40,6 +40,6 @@ public class BranchPanel : MonoBehaviour
         }
 
         //Name.text = gmData.name;
-        //Businesses.text = $"{gmData.businesses.Count()}/{gmData.owner.maxBusinessCount}";
+        Businesses.text = $"{gmData.businesses.Count()}/{gmData.owner.maxBusinessCount}";
     }
 }

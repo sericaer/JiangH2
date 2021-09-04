@@ -5,11 +5,6 @@ namespace JiangH
 {
     public class Person : Entity, IPerson
     {
-        public Person()
-        {
-            fullName = "AAA";
-        }
-
         public IBranch branch
         {
             get
@@ -20,6 +15,23 @@ namespace JiangH
         }
 
         public string fullName { get; set; }
+        public int maxBusinessCount { get; private set; }
+
+        //public int maxGuidanceCount { get; private set; }
+
+        //public int maxLearningCount { get; private set; }
+
+        //public int maxSubsidiaryCount { get; private set; }
+
+        public Person()
+        {
+            fullName = "AAA";
+
+            maxBusinessCount = 3;
+            //maxGuidanceCount = 5;
+            //maxLearningCount = 1;
+            //maxSubsidiaryCount = 5;
+        }
 
         public static Person Create()
         {
