@@ -13,50 +13,109 @@ namespace JiangH
             this.relationManager = relationManager;
         }
 
-        public void SetRelation(IBranch branch, IBusiness business)
+        public void AddRelation(IBranch branch, IBusiness business)
         {
-            if (business == null)
+            if (business == null || branch == null)
             {
                 throw new Exception();
             }
 
-            if (business.branch != null && !business.branch.businesses.Any(x=>x==business))
+            IBranch oldBranch = null;
+            var relation = business.GetRelations<Relation_Branch_Business>().SingleOrDefault();
+            if (relation != null)
             {
-                throw new Exception();
-            }
-
-            if (branch != null)
-            {
-                foreach(var subbusiness in branch.businesses)
+                if(relation.branch == branch)
                 {
-                    if(subbusiness.branch != branch)
+                    return;
+                }
+
+                oldBranch = relation.branch;
+                relationManager.RemoveRelation(relation);
+            }
+
+            var newRelation = new Relation_Branch_Business(branch, business);
+            relationManager.AddRelation(newRelation);
+
+            UpdateComponets(branch, oldBranch, business);
+        }
+
+        public void RemoveRelation(IBranch branch, IBusiness business)
+        {
+            if (business == null || branch == null)
+            {
+                throw new Exception();
+            }
+
+            var relation = business.GetRelations<Relation_Branch_Business>().SingleOrDefault();
+            if (relation == null)
+            {
+                throw new Exception();
+            }
+
+            if (relation.branch != branch)
+            {
+                throw new Exception();
+            }
+
+            relationManager.RemoveRelation(relation);
+
+            UpdateComponets(null, branch, business);
+        }
+
+        private void UpdateComponets(IBranch newBranch, IBranch oldBranch, IBusiness business)
+        {
+            UpdateComponentPdtRecv(newBranch, oldBranch, business);
+            UpdateComponentProducter(newBranch, oldBranch, business);
+        }
+
+        private void UpdateComponentProducter(IBranch newBranch, IBranch oldBranch, IBusiness business)
+        {
+            if (oldBranch != null)
+            {
+                business.RemoveComponents<ComponentPdtRecv>();
+            }
+
+            if (newBranch != null)
+            {
+                business.AddComponent(new ComponentPdtRecv(newBranch));
+            }
+        }
+
+        private void UpdateComponentPdtRecv(IBranch newBranch, IBranch oldBranch, IBusiness business)
+        {
+            var key = "BRANCH_OWNER";
+            if (oldBranch != null)
+            {
+                foreach (var productor in business.GetComponents<ComponentProducter>())
+                {
+                    productor.efficentDetail.Remove(key);
+                }
+
+                if (oldBranch.owner != null)
+                {
+                    foreach (var productor in oldBranch.businesses.SelectMany(x => x.GetComponents<ComponentProducter>()))
                     {
-                        throw new Exception();
+                        productor.efficentDetail[key] = (key, oldBranch.owner.CalcBusinessEfficent());
                     }
                 }
             }
 
-            if (business.branch == branch)
+            if (newBranch != null)
             {
-                return;
+                foreach (var productor in newBranch.businesses.SelectMany(x => x.GetComponents<ComponentProducter>()))
+                {
+                    productor.efficentDetail.Remove(key);
+
+                    if (newBranch.owner == null)
+                    {
+                        productor.efficentDetail.Add(key, ("BRANCH_OWNER", -100.0));
+                    }
+                    else
+                    {
+                        productor.efficentDetail.Add(key, (key, newBranch.owner.CalcBusinessEfficent()));
+                    }
+                }
             }
-
-            var relation = business.GetRelations<Relation_Branch_Business>().SingleOrDefault();
-            if (relation != null)
-            {
-                relationManager.RemoveRelation(relation);
-
-                business.RemoveComponents<ComponentPdtRecv>();
-            }
-
-            if(branch != null)
-            {
-                var newRelation = new Relation_Branch_Business(branch, business);
-                relationManager.AddRelation(newRelation);
-
-                business.AddComponent(new ComponentPdtRecv(branch));
-            }
-
         }
     }
 }

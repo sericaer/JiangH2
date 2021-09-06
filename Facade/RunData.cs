@@ -37,9 +37,9 @@ namespace JiangH
 
             Entity.funcGetRelations = relationMgr.GetRelationsByEntity;
 
-            systemMgr.relationPersonBranch.SetRelation(persons.First(), branches.First());
-            systemMgr.relationBranchBusiness.SetRelation(branches.First(), businesses.First());
-            systemMgr.relationBranchBusiness.SetRelation(branches.First(), businesses.Last());
+            systemMgr.relationPersonBranch.AddRelation(persons.First(), branches.First());
+            systemMgr.relationBranchBusiness.AddRelation(branches.First(), businesses.First());
+            systemMgr.relationBranchBusiness.AddRelation(branches.First(), businesses.Last());
 
             date.OnDaysInc = ((int y, int m, int d)dateValue) =>
             {

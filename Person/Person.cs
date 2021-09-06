@@ -33,6 +33,18 @@ namespace JiangH
             //maxSubsidiaryCount = 5;
         }
 
+        public double CalcBusinessEfficent()
+        {
+            if(branch == null || !branch.businesses.Any())
+            {
+                return 100;
+            }
+
+            var efficent = 100.0 * (maxBusinessCount - branch.businesses.Count()) / maxBusinessCount;
+
+            return Math.Max(efficent, 30);
+        }
+
         public static Person Create()
         {
             return new Person();

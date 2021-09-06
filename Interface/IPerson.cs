@@ -13,5 +13,7 @@
         //int maxSubsidiaryCount { get; }
 
         IBranch branch { get; }
+
+        double CalcBusinessEfficent();
     }
 }

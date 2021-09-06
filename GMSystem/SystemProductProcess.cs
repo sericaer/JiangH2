@@ -32,7 +32,7 @@ namespace JiangH
                         comRecv.recv.AddComponent(comStorage);
                     }
 
-                    comStorage.product.value += producter.pdt.value;
+                    comStorage.product.value += producter.pdt.value * producter.efficent / 100;
                 }
             }
         }

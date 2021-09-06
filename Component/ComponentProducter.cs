@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace JiangH
 {
@@ -6,9 +8,14 @@ namespace JiangH
     {
         public IProduct pdt;
 
+        public double efficent => 100 + efficentDetail.Values.Sum(x => x.value);
+
+        public Dictionary<string, (string desc, double value)> efficentDetail;
+
         public ComponentProducter()
         {
             pdt = new Product(ProductType.Money, 100);
+            efficentDetail = new Dictionary<string, (string desc, double value)>();
         }
     }
 
@@ -23,6 +30,5 @@ namespace JiangH
             this.type = type;
             this.value = value;
         }
-
     }
 }
