@@ -6,12 +6,11 @@ namespace JiangH
 {
     public class ComponentPdtStorage : IComponent
     {
-        public readonly ProductType type;
-        public double value;
+        public readonly Product product;
 
         public ComponentPdtStorage(ProductType type)
         {
-            this.type = type;
+            this.product = new Product(type, 0);
         }
     }
 }

@@ -23,6 +23,23 @@ namespace JiangH
             }
         }
 
+        
+        public IEnumerable<IProduct> products
+        {
+            get
+            {
+                return GetComponents<ComponentPdtStorage>().Select(x => x.product);
+            }
+        }
+
+        public IProduct money
+        {
+            get
+            {
+                return products.SingleOrDefault(x => x.type == ProductType.Money);
+            }
+        }
+
         public static Branch Create()
         {
             return new Branch();

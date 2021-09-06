@@ -6,5 +6,7 @@ namespace JiangH
     {
         IPerson owner { get; }
         IEnumerable<IBusiness> businesses { get; }
+
+        IEnumerable<IProduct> products { get; }
     }
 }

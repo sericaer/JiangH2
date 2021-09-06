@@ -7,7 +7,7 @@ namespace JiangH
     public interface IProduct
     {
         ProductType type { get; }
-        double value { get; }
+        double value { get; set; }
     }
 
     public enum ProductType

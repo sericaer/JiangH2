@@ -12,11 +12,11 @@ namespace JiangH
         }
     }
 
-    internal class Product : IProduct
+    public class Product : IProduct
     {
         public ProductType type { get; private set; }
 
-        public double value { get; private set; }
+        public double value { get; set; }
 
         public Product(ProductType type, double value)
         {

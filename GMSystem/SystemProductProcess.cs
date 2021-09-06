@@ -25,14 +25,14 @@ namespace JiangH
 
                 foreach (var producter in entity.GetComponents<ComponentProducter>())
                 {
-                    var comStorage = comRecv.recv.GetComponents<ComponentPdtStorage>().SingleOrDefault(x=>x.type == producter.pdt.type);
+                    var comStorage = comRecv.recv.GetComponents<ComponentPdtStorage>().SingleOrDefault(x=>x.product.type == producter.pdt.type);
                     if(comStorage == null)
                     {
                         comStorage = new ComponentPdtStorage(producter.pdt.type);
                         comRecv.recv.AddComponent(comStorage);
                     }
 
-                    comStorage.value += producter.pdt.value;
+                    comStorage.product.value += producter.pdt.value;
                 }
             }
         }
