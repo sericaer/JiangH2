@@ -8,6 +8,8 @@ namespace JiangH
     {
         private IEnumerable<IEntity> entitys;
 
+        private IEnumerable<IBranch> branches;
+
         public SystemProductProcess(IEnumerable<IEntity> entitys)
         {
             this.entitys = entitys;
@@ -15,24 +17,38 @@ namespace JiangH
 
         internal void OnDaysInc((int y, int m, int d) dateValue)
         {
-            foreach(var entity in entitys)
+            //foreach(var entity in entitys)
+            //{
+            //    var comRecv = entity.GetComponents<ComponentPdtRecv>().SingleOrDefault();
+            //    if(comRecv == null)
+            //    {
+            //        continue;
+            //    }
+
+            //    foreach (var producter in entity.GetComponents<ComponentProducter>())
+            //    {
+            //        var comStorage = comRecv.recv.GetComponents<ComponentPdtStorage>().SingleOrDefault(x=>x.product.type == producter.pdt.type);
+            //        if(comStorage == null)
+            //        {
+            //            comStorage = new ComponentPdtStorage(producter.pdt.type);
+            //            comRecv.recv.AddComponent(comStorage);
+            //        }
+
+            //        comStorage.product.value += producter.pdt.value * producter.efficent / 100;
+            //    }
+            //}
+
+            foreach (var branch in branches)
             {
-                var comRecv = entity.GetComponents<ComponentPdtRecv>().SingleOrDefault();
-                if(comRecv == null)
+                foreach (var business in branch.businesses)
                 {
-                    continue;
-                }
+                    var producters = business.GetComponents<ComponentProducter>();
+                    var efficents = business.GetComponents<ComponentProductEfficent>();
 
-                foreach (var producter in entity.GetComponents<ComponentProducter>())
-                {
-                    var comStorage = comRecv.recv.GetComponents<ComponentPdtStorage>().SingleOrDefault(x=>x.product.type == producter.pdt.type);
-                    if(comStorage == null)
+                    foreach(var producter in producters)
                     {
-                        comStorage = new ComponentPdtStorage(producter.pdt.type);
-                        comRecv.recv.AddComponent(comStorage);
-                    }
 
-                    comStorage.product.value += producter.pdt.value * producter.efficent / 100;
+                    }
                 }
             }
         }

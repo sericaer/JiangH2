@@ -44,5 +44,13 @@ namespace JiangH
         {
             return new Branch();
         }
+
+        public void ProductProcess()
+        {
+            foreach(var business in businesses)
+            {
+
+            }
+        }
     }
 }

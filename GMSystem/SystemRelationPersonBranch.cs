@@ -35,7 +35,7 @@ namespace JiangH
             var newRelation = new Relation_Person_Branch(person, branch);
             relationManager.AddRelation(newRelation);
 
-            UpdateComponets(branch, oldBranch, person);
+            //UpdateComponets(branch, oldBranch, person);
         }
 
         public void RemoveRelation(IPerson person, IBranch branch)
@@ -58,7 +58,7 @@ namespace JiangH
             
             relationManager.RemoveRelation(relation);
 
-            UpdateComponets(null, branch, person);
+            //UpdateComponets(null, branch, person);
         }
 
         private void UpdateComponets(IBranch newBranch, IBranch oldBranch, IPerson person)
