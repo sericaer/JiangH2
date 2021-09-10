@@ -45,12 +45,27 @@ namespace JiangH
             return new Branch();
         }
 
-        public void ProductProcess()
-        {
-            foreach(var business in businesses)
-            {
+        //public void OnDaysInc((int y, int m, int d) dateValue)
+        //{
+        //    ProductProcess();
+        //}
 
-            }
-        }
+        //private void ProductProcess()
+        //{
+        //    foreach(var business in businesses)
+        //    {
+        //        foreach(var pdt in business.MakeProduct())
+        //        {
+        //            var comStorage = GetComponents<ComponentPdtStorage>().SingleOrDefault(x => x.product.type == pdt.type);
+        //            if (comStorage == null)
+        //            {
+        //                comStorage = new ComponentPdtStorage(pdt.type);
+        //                AddComponent(comStorage);
+        //            }
+
+        //            comStorage.product.value += pdt.value;
+        //        }
+        //    }
+        //}
     }
 }

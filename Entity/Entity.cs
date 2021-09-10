@@ -57,13 +57,21 @@ namespace JiangH
 
             OnRemoveComponent?.Invoke(component);
         }
-        public void RemoveComponents<T>() where T : class, IComponent
+        public void RemoveComponents<T>(Func<T, bool> func) where T : class, IComponent
         {
             var type = typeof(T);
-            if (componentDict.ContainsKey(type))
+            if (!componentDict.ContainsKey(type))
+            {
+                return;
+            }
+
+            if(func == null)
             {
                 componentDict[type].Clear();
+                return;
             }
+
+            componentDict[type].RemoveWhere(x => func(x as T));
         }
 
         public IEnumerable<T> GetRelations<T>() where T:AbsRelation
@@ -71,6 +79,9 @@ namespace JiangH
             return funcGetRelations(typeof(T), this).Select(x => x as T);
         }
 
-
+        public void AddComponentRange(IEnumerable<IComponent> components)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace JiangH
 {
     public class SystemManager
     {
-        public SystemProductProcess productProcess;
+        public SystemBranchProductProcess branchProductProcess;
 
         public SystemRelationPersonBranch relationPersonBranch;
 
@@ -18,12 +18,12 @@ namespace JiangH
 
         public void OnDaysInc((int y, int m, int d) dateValue)
         {
-            productProcess.OnDaysInc(dateValue);
+            branchProductProcess.OnDaysInc(dateValue);
         }
 
         public void Build(IDictionary<Type, List<IEntity>> com2Entitys, RelationManager relationManager)
         {
-            productProcess = new SystemProductProcess(com2Entitys[typeof(ComponentProducter)]);
+            branchProductProcess = new SystemBranchProductProcess(com2Entitys[typeof(IBranch)]);
 
             relationPersonBranch = new SystemRelationPersonBranch(relationManager);
             relationBranchBusiness = new SystemRelationBranchBusiness(relationManager);

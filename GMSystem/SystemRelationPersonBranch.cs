@@ -35,7 +35,7 @@ namespace JiangH
             var newRelation = new Relation_Person_Branch(person, branch);
             relationManager.AddRelation(newRelation);
 
-            //UpdateComponets(branch, oldBranch, person);
+            UpdateComponets(branch, oldBranch, person);
         }
 
         public void RemoveRelation(IPerson person, IBranch branch)
@@ -58,13 +58,32 @@ namespace JiangH
             
             relationManager.RemoveRelation(relation);
 
-            //UpdateComponets(null, branch, person);
+            UpdateComponets(null, branch, person);
         }
 
         private void UpdateComponets(IBranch newBranch, IBranch oldBranch, IPerson person)
         {
-            UpdateComponentPdtRecv(newBranch, oldBranch, person);
-            UpdateComponentProducter(newBranch, oldBranch, person);
+            UpdateComponentBusinessEfficentProduct(newBranch, oldBranch, person);
+
+            //UpdateComponentPdtRecv(newBranch, oldBranch, person);
+            //UpdateComponentProducter(newBranch, oldBranch, person);
+        }
+
+        private void UpdateComponentBusinessEfficentProduct(IBranch newBranch, IBranch oldBranch, IPerson person)
+        {
+            var key = "BRANCH_OWNER_EFFICT";
+
+            if (oldBranch != null)
+            {
+                oldBranch.RemoveComponents<ComponentBusinessEfficentProduct>(x => x.desc == key);
+            }
+
+            if (newBranch != null)
+            {
+                newBranch.RemoveComponents<ComponentBusinessEfficentProduct>(x => x.desc == key);
+
+                newBranch.AddComponent(new ComponentBusinessEfficentProduct() { desc = key, value = 100.0 * person.maxBusinessCount / newBranch.businesses.Count() });
+            }
         }
 
         private void UpdateComponentProducter(IBranch newBranch, IBranch oldBranch, IPerson person)

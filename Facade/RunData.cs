@@ -32,7 +32,7 @@ namespace JiangH
             entityMgr.AddEntity(Business.Create());
             entityMgr.AddEntity(Branch.Create());
 
-            systemMgr.Build(entityMgr.com2Entitys, relationMgr);
+            systemMgr.Build(entityMgr.itf2Entitys, relationMgr);
 
 
             Entity.funcGetRelations = relationMgr.GetRelationsByEntity;
@@ -43,7 +43,7 @@ namespace JiangH
 
             date.OnDaysInc = ((int y, int m, int d)dateValue) =>
             {
-                systemMgr.OnDaysInc(dateValue);
+                systemMgr.branchProductProcess.OnDaysInc(dateValue);
             };
         }
     }

@@ -36,7 +36,7 @@ namespace JiangH
             var newRelation = new Relation_Branch_Business(branch, business);
             relationManager.AddRelation(newRelation);
 
-            //UpdateComponets(branch, oldBranch, business);
+            UpdateComponets(branch, oldBranch, business);
         }
 
         public void RemoveRelation(IBranch branch, IBusiness business)
@@ -59,13 +59,15 @@ namespace JiangH
 
             relationManager.RemoveRelation(relation);
 
-            //UpdateComponets(null, branch, business);
+            UpdateComponets(null, branch, business);
         }
 
         private void UpdateComponets(IBranch newBranch, IBranch oldBranch, IBusiness business)
         {
-            UpdateComponentPdtRecv(newBranch, oldBranch, business);
-            UpdateComponentProducter(newBranch, oldBranch, business);
+            //UpdateComponentPdtRecv(newBranch, oldBranch, business);
+            //UpdateComponentProducter(newBranch, oldBranch, business);
+
+            UpdateComponentBusinessEfficentProduct(newBranch, oldBranch, business);
         }
 
         private void UpdateComponentProducter(IBranch newBranch, IBranch oldBranch, IBusiness business)
@@ -114,6 +116,31 @@ namespace JiangH
                     {
                         productor.efficentDetail.Add(key, (key, newBranch.owner.CalcBusinessEfficent()));
                     }
+                }
+            }
+        }
+
+        private void UpdateComponentBusinessEfficentProduct(IBranch newBranch, IBranch oldBranch, IBusiness business)
+        {
+            var key = "BRANCH_OWNER_EFFICT";
+
+            if (oldBranch != null)
+            {
+                oldBranch.RemoveComponents<ComponentBusinessEfficentProduct>(x => x.desc == key);
+
+                if (oldBranch.owner != null)
+                {
+                    oldBranch.AddComponent(new ComponentBusinessEfficentProduct() { desc = key, value = 100.0 * oldBranch.owner.maxBusinessCount / oldBranch.businesses.Count()  });
+                }
+            }
+
+            if (newBranch != null)
+            {
+                newBranch.RemoveComponents<ComponentBusinessEfficentProduct>(x => x.desc == key);
+
+                if (newBranch.owner != null)
+                {
+                    newBranch.AddComponent(new ComponentBusinessEfficentProduct() { desc = key, value = 100.0 * newBranch.owner.maxBusinessCount / newBranch.businesses.Count()  });
                 }
             }
         }

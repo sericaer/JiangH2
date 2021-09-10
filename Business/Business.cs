@@ -29,7 +29,8 @@ namespace JiangH
         {
             get
             {
-                return GetComponents<ComponentEfficentProduct>().Select(x=>(x.desc, x.value));
+                var rslt = GetComponents<ComponentEfficentProduct>().Select(x => (x.desc, x.value));
+                return branch == null ? rslt : rslt.Concat(branch.GetComponents<ComponentBusinessEfficentProduct>().Select(x => (x.desc, x.value)));
             }
         }
 
@@ -41,12 +42,9 @@ namespace JiangH
             }
         }
 
-        public IEnumerable<IProductInfo> MakeProduct()
-        {
-            foreach(var pdt in products)
-            {
-                pdt
-            }
-        }
+        //public IEnumerable<IProduct> MakeProduct()
+        //{
+        //    return products.Select(x => new Product(x.type, x.value * (1.0 + efficientDetail.Sum(e => e.value) / 100)));
+        //}
     }
 }
