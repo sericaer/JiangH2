@@ -13,8 +13,11 @@ namespace JiangH
 
         public Business()
         {
+            name = "BBB";
             AddComponent(new ComponentProducter());
         }
+
+        public string name { get; private set; }
 
         public IBranch branch
         {

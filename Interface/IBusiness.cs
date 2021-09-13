@@ -4,6 +4,8 @@ namespace JiangH
 {
     public interface IBusiness : IEntity, GMInterface
     {
+        string name { get; }
+
         IBranch branch { get; }
 
         //IEnumerable<IProduct> MakeProduct();

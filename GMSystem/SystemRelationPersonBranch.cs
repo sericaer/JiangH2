@@ -82,33 +82,35 @@ namespace JiangH
             {
                 newBranch.RemoveComponents<ComponentBusinessEfficentProduct>(x => x.desc == key);
 
-                newBranch.AddComponent(new ComponentBusinessEfficentProduct() { desc = key, value = 100.0 * person.maxBusinessCount / newBranch.businesses.Count() });
+                var efficent = 100.0 * newBranch.owner.maxBusinessCount / newBranch.businesses.Count();
+
+                newBranch.AddComponent(new ComponentBusinessEfficentProduct() { desc = key, value = Math.Min(100, efficent) - 100 });
             }
         }
 
-        private void UpdateComponentProducter(IBranch newBranch, IBranch oldBranch, IPerson person)
-        {
-            var key = "BRANCH_OWNER";
+        //private void UpdateComponentProducter(IBranch newBranch, IBranch oldBranch, IPerson person)
+        //{
+        //    var key = "BRANCH_OWNER";
 
-            if (oldBranch != null)
-            {
-                foreach (var comProducot in oldBranch.businesses.SelectMany(x=>x.GetComponents<ComponentProducter>()))
-                {
-                    comProducot.efficentDetail.Remove(key);
-                    comProducot.efficentDetail.Add(key, ("BRANCH_OWNER_NULL", -100));
-                }
-            }
+        //    if (oldBranch != null)
+        //    {
+        //        foreach (var comProducot in oldBranch.businesses.SelectMany(x=>x.GetComponents<ComponentProducter>()))
+        //        {
+        //            comProducot.efficentDetail.Remove(key);
+        //            comProducot.efficentDetail.Add(key, ("BRANCH_OWNER_NULL", -100));
+        //        }
+        //    }
 
-            if (newBranch != null)
-            {
-                foreach (var comProducot in newBranch.businesses.SelectMany(x =>x.GetComponents<ComponentProducter>()))
-                {
-                    comProducot.efficentDetail.Remove(key);
-                    comProducot.efficentDetail.Add(key, (key, person.CalcBusinessEfficent()));
-                }
-            }
+        //    if (newBranch != null)
+        //    {
+        //        foreach (var comProducot in newBranch.businesses.SelectMany(x =>x.GetComponents<ComponentProducter>()))
+        //        {
+        //            comProducot.efficentDetail.Remove(key);
+        //            comProducot.efficentDetail.Add(key, (key, person.CalcBusinessEfficent()));
+        //        }
+        //    }
             
-        }
+        //}
 
         private void UpdateComponentPdtRecv(IBranch newBranch, IBranch oldBranch, IPerson person)
         {

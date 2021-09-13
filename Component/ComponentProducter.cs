@@ -8,14 +8,9 @@ namespace JiangH
     {
         public IProduct pdt;
 
-        public double efficent => 100 + efficentDetail.Values.Sum(x => x.value);
-
-        public Dictionary<string, (string desc, double value)> efficentDetail;
-
         public ComponentProducter()
         {
             pdt = new Product(ProductType.Money, 100);
-            efficentDetail = new Dictionary<string, (string desc, double value)>();
         }
     }
 

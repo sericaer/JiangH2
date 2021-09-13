@@ -83,42 +83,42 @@ namespace JiangH
             }
         }
 
-        private void UpdateComponentPdtRecv(IBranch newBranch, IBranch oldBranch, IBusiness business)
-        {
-            var key = "BRANCH_OWNER";
-            if (oldBranch != null)
-            {
-                foreach (var productor in business.GetComponents<ComponentProducter>())
-                {
-                    productor.efficentDetail.Remove(key);
-                }
+        //private void UpdateComponentPdtRecv(IBranch newBranch, IBranch oldBranch, IBusiness business)
+        //{
+        //    var key = "BRANCH_OWNER";
+        //    if (oldBranch != null)
+        //    {
+        //        foreach (var productor in business.GetComponents<ComponentProducter>())
+        //        {
+        //            productor.efficentDetail.Remove(key);
+        //        }
 
-                if (oldBranch.owner != null)
-                {
-                    foreach (var productor in oldBranch.businesses.SelectMany(x => x.GetComponents<ComponentProducter>()))
-                    {
-                        productor.efficentDetail[key] = (key, oldBranch.owner.CalcBusinessEfficent());
-                    }
-                }
-            }
+        //        if (oldBranch.owner != null)
+        //        {
+        //            foreach (var productor in oldBranch.businesses.SelectMany(x => x.GetComponents<ComponentProducter>()))
+        //            {
+        //                productor.efficentDetail[key] = (key, oldBranch.owner.CalcBusinessEfficent());
+        //            }
+        //        }
+        //    }
 
-            if (newBranch != null)
-            {
-                foreach (var productor in newBranch.businesses.SelectMany(x => x.GetComponents<ComponentProducter>()))
-                {
-                    productor.efficentDetail.Remove(key);
+        //    if (newBranch != null)
+        //    {
+        //        foreach (var productor in newBranch.businesses.SelectMany(x => x.GetComponents<ComponentProducter>()))
+        //        {
+        //            productor.efficentDetail.Remove(key);
 
-                    if (newBranch.owner == null)
-                    {
-                        productor.efficentDetail.Add(key, ("BRANCH_OWNER", -100.0));
-                    }
-                    else
-                    {
-                        productor.efficentDetail.Add(key, (key, newBranch.owner.CalcBusinessEfficent()));
-                    }
-                }
-            }
-        }
+        //            if (newBranch.owner == null)
+        //            {
+        //                productor.efficentDetail.Add(key, ("BRANCH_OWNER", -100.0));
+        //            }
+        //            else
+        //            {
+        //                productor.efficentDetail.Add(key, (key, newBranch.owner.CalcBusinessEfficent()));
+        //            }
+        //        }
+        //    }
+        //}
 
         private void UpdateComponentBusinessEfficentProduct(IBranch newBranch, IBranch oldBranch, IBusiness business)
         {
@@ -130,7 +130,9 @@ namespace JiangH
 
                 if (oldBranch.owner != null)
                 {
-                    oldBranch.AddComponent(new ComponentBusinessEfficentProduct() { desc = key, value = 100.0 * oldBranch.owner.maxBusinessCount / oldBranch.businesses.Count()  });
+                    var efficent = 100.0 * oldBranch.owner.maxBusinessCount / oldBranch.businesses.Count();
+
+                    oldBranch.AddComponent(new ComponentBusinessEfficentProduct() { desc = key, value = Math.Min(100, efficent) - 100 });
                 }
             }
 
@@ -140,7 +142,9 @@ namespace JiangH
 
                 if (newBranch.owner != null)
                 {
-                    newBranch.AddComponent(new ComponentBusinessEfficentProduct() { desc = key, value = 100.0 * newBranch.owner.maxBusinessCount / newBranch.businesses.Count()  });
+                    var efficent = 100.0 * newBranch.owner.maxBusinessCount / newBranch.businesses.Count();
+
+                    newBranch.AddComponent(new ComponentBusinessEfficentProduct() { desc = key, value = Math.Min(100, efficent) - 100 });
                 }
             }
         }
