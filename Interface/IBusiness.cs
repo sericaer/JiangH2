@@ -10,7 +10,9 @@ namespace JiangH
 
         //IEnumerable<IProduct> MakeProduct();
 
-        IEnumerable<IProduct> products { get; }
+        IEnumerable<IProduct> productsBase { get; }
+
+        IEnumerable<IProduct> productsCurr { get; }
 
         IEnumerable<(string desc, double value)> efficientDetail { get; }
     }

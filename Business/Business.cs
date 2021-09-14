@@ -37,11 +37,19 @@ namespace JiangH
             }
         }
 
-        public IEnumerable<IProduct> products
+        public IEnumerable<IProduct> productsBase
         {
             get
             {
                 return GetComponents<ComponentProducter>().Select(x => x.pdt);
+            }
+        }
+
+        public IEnumerable<IProduct> productsCurr
+        {
+            get
+            {
+                return productsBase.Select(x => new Product(x.type, x.value * (1.0 + efficientDetail.Sum(e => e.value) / 100)));
             }
         }
 

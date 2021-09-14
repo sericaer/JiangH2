@@ -27,7 +27,7 @@ namespace JiangH
         {
             fullName = "AAA";
 
-            maxBusinessCount = 3;
+            maxBusinessCount = 1;
             //maxGuidanceCount = 5;
             //maxLearningCount = 1;
             //maxSubsidiaryCount = 5;

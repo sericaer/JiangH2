@@ -31,7 +31,7 @@ namespace JiangH
 
         private IEnumerable<IProduct> BusinessProductProcess(IBusiness business)
         {
-            return business.products.Select(x => new Product(x.type, x.value * (1.0 + business.efficientDetail.Sum(e => e.value) / 100)));
+            return business.productsBase.Select(x => new Product(x.type, x.value * (1.0 + business.efficientDetail.Sum(e => e.value) / 100)));
         }
 
         private void BranchAddPdtStorage(IBranch branch, IProduct pdt)

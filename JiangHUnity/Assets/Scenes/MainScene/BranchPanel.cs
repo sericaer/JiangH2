@@ -24,6 +24,8 @@ public class BranchPanel : MonoBehaviour
     public Text Businesses;
     public Text Money;
 
+    public GameObject prefabPanelBussiness;
+
     private IBranch _gmData;
 
     // Use this for initialization
@@ -45,5 +47,14 @@ public class BranchPanel : MonoBehaviour
 
         var money = gmData.products.SingleOrDefault(x => x.type == ProductType.Money);
         Money.text = money == null ? "0" : money.value.ToString();
+    }
+
+    public void OnBusinessClick()
+    {
+        var gmObj = Instantiate(prefabPanelBussiness, this.transform.root.GetComponentInChildren<Canvas>().transform);
+        if (_gmData != null)
+        {
+            gmObj.GetComponent<BusinessTable>().gmData = _gmData.businesses;
+        }
     }
 }
