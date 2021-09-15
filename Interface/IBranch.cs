@@ -4,7 +4,9 @@ namespace JiangH
 {
     public interface IBranch : IEntity, GMInterface
     {
+        string name { get; }
         IPerson owner { get; }
+
         IEnumerable<IBusiness> businesses { get; }
 
         IEnumerable<IProduct> products { get; }

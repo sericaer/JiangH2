@@ -30,10 +30,11 @@ namespace JiangH
 
             entityMgr.AddEntity(Business.Create());
             entityMgr.AddEntity(Business.Create());
-            entityMgr.AddEntity(Branch.Create());
+
+            entityMgr.AddEntity(Branch.Create("987"));
+            entityMgr.AddEntity(Branch.Create("123"));
 
             systemMgr.Build(entityMgr.itf2Entitys, relationMgr);
-
 
             Entity.funcGetRelations = relationMgr.GetRelationsByEntity;
 

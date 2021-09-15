@@ -6,6 +6,8 @@ namespace JiangH
 {
     public class Branch : Entity, IBranch
     {
+        public string name { get; set; }
+
         public IPerson owner
         {
             get
@@ -40,9 +42,12 @@ namespace JiangH
             }
         }
 
-        public static Branch Create()
+        public static Branch Create(string name)
         {
-            return new Branch();
+            var branch = new Branch();
+            branch.name = name;
+
+            return branch;
         }
 
         //public void OnDaysInc((int y, int m, int d) dateValue)

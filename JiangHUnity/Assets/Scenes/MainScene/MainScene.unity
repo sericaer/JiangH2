@@ -2373,8 +2373,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPanel: {fileID: 323532299}
-  datePanel: {fileID: 2086069955}
   branchPanel: {fileID: 736425883}
+  datePanel: {fileID: 2086069955}
   mainTimer: {fileID: 888727603}
 --- !u!4 &888727602
 Transform:

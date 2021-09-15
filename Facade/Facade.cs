@@ -10,9 +10,13 @@ namespace JiangH
 
         public static IPerson player { get; private set; }
 
+        public static IEnumerable<IBranch> branchs { get; private set; }
+
         public static IEnumerable<IPerson> persons { get; private set; }
 
         public static IDate date { get; private set; }
+
+        public static SystemManager system { get; private set; }
 
         public static void BuildRunData()
         {
@@ -21,6 +25,10 @@ namespace JiangH
             persons = runData.persons;
 
             date = runData.date;
+
+            system = runData.systemMgr;
+
+            branchs = runData.branches;
 
             player = persons.First();
         }
