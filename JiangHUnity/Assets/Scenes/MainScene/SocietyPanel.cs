@@ -44,9 +44,9 @@ public class SocietyPanel : MonoBehaviour
     public void OnClickDetail()
     {
         var gmObj = Instantiate(prefabPanelDetail, this.transform.root.GetComponentInChildren<Canvas>().transform);
-        //if (gmData != null)
-        //{
-        //    gmObj.GetComponent<BranchTable>().gmData = gmData.branches;
-        //}
+        if (gmData != null)
+        {
+            gmObj.GetComponent<SocietyDetail>().gmData = gmData;
+        }
     }
 }
