@@ -12,6 +12,7 @@ public class SocietyPanel : MonoBehaviour
     public Text Branch;
 
     public GameObject prefabPanelBranch;
+    public GameObject prefabPanelDetail;
 
     // Use this for initialization
     void Start()
@@ -38,5 +39,14 @@ public class SocietyPanel : MonoBehaviour
         {
             gmObj.GetComponent<BranchTable>().gmData = gmData.branches;
         }
+    }
+
+    public void OnClickDetail()
+    {
+        var gmObj = Instantiate(prefabPanelDetail, this.transform.root.GetComponentInChildren<Canvas>().transform);
+        //if (gmData != null)
+        //{
+        //    gmObj.GetComponent<BranchTable>().gmData = gmData.branches;
+        //}
     }
 }
