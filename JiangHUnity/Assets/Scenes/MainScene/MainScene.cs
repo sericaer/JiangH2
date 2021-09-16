@@ -9,6 +9,7 @@ public class MainScene : MonoBehaviour
     public PlayerPanel playerPanel;
     public BranchPanel branchPanel;
     public DatePanel datePanel;
+    public SocietyPanel societyPanel;
 
     public MainTimer mainTimer;
 
@@ -30,6 +31,8 @@ public class MainScene : MonoBehaviour
 
         playerPanel.gmData = Facade.player;
         branchPanel.gmData = Facade.player.branch;
+        societyPanel.gmData = Facade.player.branch.society;
+
         datePanel.gmData = Facade.date;
 
         mainTimer.StartTimer();

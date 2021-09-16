@@ -42,7 +42,7 @@ public class BranchPanel : MonoBehaviour
             return;
         }
 
-        //Name.text = gmData.name;
+        Name.text = gmData.name;
         Businesses.text = $"{gmData.businesses.Count()}/{gmData.owner.maxBusinessCount}";
 
         var money = gmData.products.SingleOrDefault(x => x.type == ProductType.Money);

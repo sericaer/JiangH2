@@ -29,6 +29,7 @@ namespace JiangH
 
             relationPersonBranch = new SystemRelationPersonBranch(relationManager);
             relationBranchBusiness = new SystemRelationBranchBusiness(relationManager);
+            relationBranchSociety = new SystemRelationBranchSociety(relationManager);
         }
     }
 }
