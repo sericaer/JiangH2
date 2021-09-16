@@ -1064,7 +1064,7 @@ GameObject:
   - component: {fileID: 484607360}
   - component: {fileID: 484607363}
   m_Layer: 5
-  m_Name: Sect
+  m_Name: Society
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1169,7 +1169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: {fileID: 529483599}
-  Business: {fileID: 156183583}
+  Branch: {fileID: 156183583}
+  prefabPanelBranch: {fileID: 5324321006992382596, guid: 0fd288d82432b214bacbf7d9b9fef1ba, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3192,7 +3193,7 @@ GameObject:
   - component: {fileID: 954257688}
   - component: {fileID: 954257691}
   m_Layer: 5
-  m_Name: Business
+  m_Name: Branch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3262,7 +3263,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 954257689}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 484607363}
+        m_TargetAssemblyTypeName: SocietyPanel, Assembly-CSharp
+        m_MethodName: OnBranchClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &954257689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4170,7 +4183,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4EA7\u4E1A"
+  m_Text: "\u5802\u53E3"
 --- !u!222 &1334489344
 CanvasRenderer:
   m_ObjectHideFlags: 0

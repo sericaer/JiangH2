@@ -9,7 +9,9 @@ public class SocietyPanel : MonoBehaviour
     public ISociety gmData { get; internal set; }
 
     public Text Name;
-    public Text Business;
+    public Text Branch;
+
+    public GameObject prefabPanelBranch;
 
     // Use this for initialization
     void Start()
@@ -26,6 +28,15 @@ public class SocietyPanel : MonoBehaviour
         }
 
         Name.text = gmData.name;
-        Business.text = gmData.businesses.Count().ToString();
+        Branch.text = gmData.branches.Count().ToString();
+    }
+
+    public void OnBranchClick()
+    {
+        var gmObj = Instantiate(prefabPanelBranch, this.transform.root.GetComponentInChildren<Canvas>().transform);
+        if (gmData != null)
+        {
+            gmObj.GetComponent<BranchTable>().gmData = gmData.branches;
+        }
     }
 }
