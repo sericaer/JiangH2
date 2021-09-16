@@ -8,7 +8,7 @@ public class BusinessDetail : MonoBehaviour
 {
     public IBusiness gmData { get; internal set; }
 
-    public UnityEngine.UI.Dropdown branch;
+    public Dropdown branch;
     public Text effecient;
 
     public void OnClose()
@@ -31,6 +31,11 @@ public class BusinessDetail : MonoBehaviour
             var select = branch.options[index];
             OnChangedOwnerBranch(select.text);
         });
+
+        //effecient.GetComponent<TooltipTrigger>().OnShowTooltip = (trigger) =>
+        //{
+        //    trigger.tooltip = string.Join("\n", gmData.efficientDetail.Select(x => $"{x.value} {x.desc}"));
+        //};
     }
 
     // Update is called once per frame
