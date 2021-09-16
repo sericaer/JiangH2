@@ -22,9 +22,11 @@ public class BranchPanel : MonoBehaviour
 
     public Text Name;
     public Text Businesses;
+    public Text Person;
     public Text Money;
 
     public GameObject prefabPanelBussiness;
+    public GameObject prefabPanelPersons;
 
     private IBranch _gmData;
 
@@ -47,6 +49,8 @@ public class BranchPanel : MonoBehaviour
 
         var money = gmData.products.SingleOrDefault(x => x.type == ProductType.Money);
         Money.text = money == null ? "0" : money.value.ToString();
+
+        Person.text = gmData.persons.Count().ToString();
     }
 
     public void OnBusinessClick()
@@ -55,6 +59,15 @@ public class BranchPanel : MonoBehaviour
         if (_gmData != null)
         {
             gmObj.GetComponent<BusinessTable>().gmData = _gmData.businesses;
+        }
+    }
+
+    public void OnPersonClick()
+    {
+        var gmObj = Instantiate(prefabPanelPersons, this.transform.root.GetComponentInChildren<Canvas>().transform);
+        if (_gmData != null)
+        {
+            gmObj.GetComponent<PersonTable>().gmData = _gmData.persons;
         }
     }
 }
