@@ -17,6 +17,15 @@ namespace JiangH
             }
         }
 
+        public ISociety society
+        {
+            get
+            {
+                var relation = GetRelations<Relation_Branch_Society>().SingleOrDefault();
+                return relation != null ? relation.society : null;
+            }
+        }
+
         public IEnumerable<IBusiness> businesses
         {
             get
@@ -25,7 +34,14 @@ namespace JiangH
             }
         }
 
-        
+        public IEnumerable<IPerson> persons
+        {
+            get
+            {
+                return GetRelations<Relation_Person_Branch>().Select(x => x.person);
+            }
+        }
+
         public IEnumerable<IProduct> products
         {
             get

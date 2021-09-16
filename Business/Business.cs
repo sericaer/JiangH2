@@ -28,6 +28,14 @@ namespace JiangH
             }
         }
 
+        public ISociety society
+        {
+            get
+            {
+                return branch != null ? branch.society : null;
+            }
+        }
+
         public IEnumerable<(string desc, double value)> efficientDetail
         {
             get

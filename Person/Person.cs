@@ -14,6 +14,14 @@ namespace JiangH
             }
         }
 
+        public ISociety society
+        {
+            get
+            {
+                return branch != null ? branch.society : null;
+            }
+        }
+
         public string fullName { get; set; }
         public int maxBusinessCount { get; private set; }
 

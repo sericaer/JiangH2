@@ -8,6 +8,8 @@ namespace JiangH
 
         IBranch branch { get; }
 
+        ISociety society { get; }
+
         //IEnumerable<IProduct> MakeProduct();
 
         IEnumerable<IProduct> productsBase { get; }

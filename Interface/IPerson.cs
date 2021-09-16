@@ -14,6 +14,8 @@
 
         IBranch branch { get; }
 
+        ISociety society { get; }
+
         double CalcBusinessEfficent();
     }
 }

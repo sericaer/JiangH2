@@ -11,6 +11,8 @@ namespace JiangH
 
         public SystemRelationBranchBusiness relationBranchBusiness;
 
+        public SystemRelationBranchSociety relationBranchSociety;
+
         public SystemManager()
         {
 

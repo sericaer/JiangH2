@@ -7,7 +7,11 @@ namespace JiangH
         string name { get; }
         IPerson owner { get; }
 
+        ISociety society { get; }
+
         IEnumerable<IBusiness> businesses { get; }
+
+        IEnumerable<IPerson> persons { get; }
 
         IEnumerable<IProduct> products { get; }
 
