@@ -32,5 +32,27 @@ namespace JiangH
 
             player = persons.First();
         }
+
+        public static IBranch CreateBranch(string name, out string erroMsg)
+        {
+            erroMsg = "";
+
+            if (runData == null)
+            {
+                throw new Exception();
+            }
+
+            if(runData.branches.Any(x=>x.name == name))
+            {
+                erroMsg = $"已经存在名字为{name}的堂口";
+                return null;
+            }
+
+            var branch = Branch.Create(name);
+            runData.entityMgr.AddEntity(branch);
+            return branch;
+        }
+
+
     }
 }
