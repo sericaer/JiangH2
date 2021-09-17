@@ -25,8 +25,8 @@ public class BranchPanel : MonoBehaviour
     public Text Person;
     public Text Money;
 
-    public GameObject prefabPanelBussiness;
-    public GameObject prefabPanelPersons;
+    public GameObject prefabPanelDetail;
+    //public GameObject prefabPanelPersons;
 
     private IBranch _gmData;
 
@@ -53,21 +53,29 @@ public class BranchPanel : MonoBehaviour
         Person.text = gmData.persons.Count().ToString();
     }
 
-    public void OnBusinessClick()
+    public void OnClickDetail()
     {
-        var gmObj = Instantiate(prefabPanelBussiness, this.transform.root.GetComponentInChildren<Canvas>().transform);
-        if (_gmData != null)
+        var gmObj = Instantiate(prefabPanelDetail, this.transform.root.GetComponentInChildren<Canvas>().transform);
+        if (gmData != null)
         {
-            gmObj.GetComponent<BusinessTable>().gmData = _gmData.businesses;
+            gmObj.GetComponent<BranchDetail>().gmData = gmData;
         }
     }
+    //public void OnBusinessClick()
+    //{
+    //    var gmObj = Instantiate(prefabPanelBussiness, this.transform.root.GetComponentInChildren<Canvas>().transform);
+    //    if (_gmData != null)
+    //    {
+    //        gmObj.GetComponent<BusinessTable>().gmData = _gmData.businesses;
+    //    }
+    //}
 
-    public void OnPersonClick()
-    {
-        var gmObj = Instantiate(prefabPanelPersons, this.transform.root.GetComponentInChildren<Canvas>().transform);
-        if (_gmData != null)
-        {
-            gmObj.GetComponent<PersonTable>().gmData = _gmData.persons;
-        }
-    }
+    //public void OnPersonClick()
+    //{
+    //    var gmObj = Instantiate(prefabPanelPersons, this.transform.root.GetComponentInChildren<Canvas>().transform);
+    //    if (_gmData != null)
+    //    {
+    //        gmObj.GetComponent<PersonTable>().gmData = _gmData.persons;
+    //    }
+    //}
 }
