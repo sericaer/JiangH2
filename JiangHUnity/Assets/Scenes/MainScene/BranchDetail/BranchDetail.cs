@@ -14,7 +14,7 @@ public class BranchDetail : MonoBehaviour
     {
         if(gmData !=  null)
         {
-            //GetComponentInChildren<PersonTable>().gmData = gmData.persons;
+            GetComponentInChildren<PersonTable>().gmData = gmData.persons;
             GetComponentInChildren<BusinessTable>().gmData = gmData.businesses;
         }
     }

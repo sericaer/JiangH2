@@ -16,6 +16,8 @@ public class SocietyDetail : MonoBehaviour
         if(gmData !=  null)
         {
             GetComponentInChildren<BranchTable>().gmData = gmData.branches;
+            GetComponentInChildren<PersonTable>().gmData = gmData.persons;
+            GetComponentInChildren<BusinessTable>().gmData = gmData.businesses;
         }
     }
 
