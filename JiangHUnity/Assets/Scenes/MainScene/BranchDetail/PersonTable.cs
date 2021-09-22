@@ -13,7 +13,6 @@ public class PersonTable : MonoBehaviour
     public class PersonInfo
     {
         public string name => data.fullName;
-        public string branch => data.branch != null ? data.branch.name : "--";
 
         public readonly IPerson data;
 

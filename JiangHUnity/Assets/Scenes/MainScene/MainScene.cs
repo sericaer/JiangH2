@@ -30,8 +30,7 @@ public class MainScene : MonoBehaviour
         Facade.BuildRunData();
 
         playerPanel.gmData = Facade.player;
-        branchPanel.gmData = Facade.player.branch;
-        societyPanel.gmData = Facade.player.branch.society;
+        societyPanel.gmData = Facade.player.society;
 
         datePanel.gmData = Facade.date;
 

@@ -6,7 +6,7 @@ namespace JiangH
     {
         string name { get; }
 
-        IBranch branch { get; }
+        //IBranch branch { get; }
 
         ISociety society { get; }
 

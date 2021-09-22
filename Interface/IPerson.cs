@@ -1,4 +1,6 @@
-﻿namespace JiangH
+﻿using System.Collections.Generic;
+
+namespace JiangH
 {
     public interface IPerson : IEntity, GMInterface
     {
@@ -12,9 +14,11 @@
 
         //int maxSubsidiaryCount { get; }
 
-        IBranch branch { get; }
+        //IBranch branch { get; }
 
         ISociety society { get; }
+
+        IEnumerable<IBusiness> businesses { get; }
 
         double CalcBusinessEfficent();
     }

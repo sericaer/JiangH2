@@ -12,7 +12,7 @@ public class BusinessTable : MonoBehaviour
     {
         public string name => data.name;
         public double efficent => 100 + data.efficientDetail.Sum(x => x.value);
-        public string branch => data.branch != null ? data.branch.name : "--";
+        //public string branch => data.branch != null ? data.branch.name : "--";
         public string product => string.Join(", ", data.productsCurr.Select(x => $"{x.type}:{x.value}"));
 
         public readonly IBusiness data;

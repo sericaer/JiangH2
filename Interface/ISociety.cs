@@ -8,7 +8,7 @@ namespace JiangH
     {
         string name { get; }
 
-        IEnumerable<IBranch> branches { get; }
+        //IEnumerable<IBranch> branches { get; }
         IEnumerable<IPerson> persons { get; }
         IEnumerable<IBusiness> businesses { get; }
     }

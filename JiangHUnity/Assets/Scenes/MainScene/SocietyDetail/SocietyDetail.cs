@@ -15,8 +15,10 @@ public class SocietyDetail : MonoBehaviour
     {
         if(gmData !=  null)
         {
-            GetComponentInChildren<BranchTable>().gmData = gmData.branches;
+            //GetComponentInChildren<BranchTable>().gmData = gmData.branches;
             GetComponentInChildren<PersonTable>().gmData = gmData.persons;
+
+            var temp = GetComponentInChildren<BusinessTable>();
             GetComponentInChildren<BusinessTable>().gmData = gmData.businesses;
         }
     }
@@ -34,9 +36,9 @@ public class SocietyDetail : MonoBehaviour
 
     public void OnCreateBranch()
     {
-        string rslt;
-        var branch = Facade.CreateBranch(DateTime.Now.ToString(), out rslt);
+        //string rslt;
+        //var branch = Facade.CreateBranch(DateTime.Now.ToString(), out rslt);
 
-        Facade.system.relationBranchSociety.AddRelation(branch, gmData);
+        //Facade.system.relationBranchSociety.AddRelation(branch, gmData);
     }
 }

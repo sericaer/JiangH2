@@ -44,12 +44,16 @@ namespace JiangH
 
             Entity.funcGetRelations = relationMgr.GetRelationsByEntity;
 
-            systemMgr.relationPersonBranch.AddRelation(persons.First(), branches.First());
+            //systemMgr.relationPersonBranch.AddRelation(persons.First(), branches.First());
 
-            systemMgr.relationBranchBusiness.AddRelation(branches.First(), businesses.First());
-            systemMgr.relationBranchBusiness.AddRelation(branches.First(), businesses.Last());
+            //systemMgr.relationBranchBusiness.AddRelation(branches.First(), businesses.First());
+            //systemMgr.relationBranchBusiness.AddRelation(branches.First(), businesses.Last());
 
-            systemMgr.relationBranchSociety.AddRelation(branches.First(), societies.First());
+            //systemMgr.relationBranchSociety.AddRelation(branches.First(), societies.First());
+
+            systemMgr.relationPersonSociety.AddRelation(persons.First(), societies.First());
+            systemMgr.relationPersonBusiness.AddRelation(persons.First(), businesses.First());
+            systemMgr.relationPersonBusiness.AddRelation(persons.First(), businesses.Last());
 
             date.OnDaysInc = ((int y, int m, int d)dateValue) =>
             {

@@ -19,12 +19,21 @@ namespace JiangH
 
         public string name { get; private set; }
 
-        public IBranch branch
+        //public IBranch branch
+        //{
+        //    get
+        //    {
+        //        var relation = GetRelations<Relation_Branch_Business>().SingleOrDefault();
+        //        return relation != null ? relation.branch : null;
+        //    }
+        //}
+
+        public IPerson owner
         {
             get
             {
-                var relation = GetRelations<Relation_Branch_Business>().SingleOrDefault();
-                return relation != null ? relation.branch : null;
+                var relation = GetRelations<Relation_Person_Business>().SingleOrDefault();
+                return relation != null ? relation.person : null;
             }
         }
 
@@ -32,7 +41,7 @@ namespace JiangH
         {
             get
             {
-                return branch != null ? branch.society : null;
+                return owner != null ? owner.society : null;
             }
         }
 
@@ -41,7 +50,7 @@ namespace JiangH
             get
             {
                 var rslt = GetComponents<ComponentEfficentProduct>().Select(x => (x.desc, x.value));
-                return branch == null ? rslt : rslt.Concat(branch.GetComponents<ComponentBusinessEfficentProduct>().Select(x => (x.desc, x.value)));
+                return owner == null ? rslt : rslt.Concat(owner.GetComponents<ComponentBusinessEfficentProduct>().Select(x => (x.desc, x.value)));
             }
         }
 

@@ -16,12 +16,12 @@ public class BusinessDetail : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void OnChangedOwnerBranch(string branchName)
-    {
-        var branch = Facade.branchs.Single(x => x.name == branchName);
+    //public void OnChangedOwnerBranch(string branchName)
+    //{
+    //    var branch = Facade.branchs.Single(x => x.name == branchName);
 
-        Facade.system.relationBranchBusiness.AddRelation(branch, gmData);
-    }
+    //    Facade.system.relationBranchBusiness.AddRelation(branch, gmData);
+    //}
 
     // Use this for initialization
     void Start()
@@ -29,7 +29,7 @@ public class BusinessDetail : MonoBehaviour
         branch.onValueChanged.AddListener((index) =>
         {
             var select = branch.options[index];
-            OnChangedOwnerBranch(select.text);
+            //OnChangedOwnerBranch(select.text);
         });
 
         //effecient.GetComponent<TooltipTrigger>().OnShowTooltip = (trigger) =>
@@ -46,7 +46,7 @@ public class BusinessDetail : MonoBehaviour
             return;
         }
 
-        UpdateBranch();
+        //UpdateBranch();
         UpdateEfficent();
     }
 
@@ -55,26 +55,26 @@ public class BusinessDetail : MonoBehaviour
         effecient.text = (100 + gmData.efficientDetail.Sum(x => x.value)).ToString();
     }
 
-    private void UpdateBranch()
-    {
-        foreach (var branch in Facade.branchs)
-        {
-            if (!this.branch.options.Any(x => x.text == branch.name))
-            {
-                this.branch.options.Add(new Dropdown.OptionData(branch.name));
-            }
-        }
+    //private void UpdateBranch()
+    //{
+    //    foreach (var branch in Facade.branchs)
+    //    {
+    //        if (!this.branch.options.Any(x => x.text == branch.name))
+    //        {
+    //            this.branch.options.Add(new Dropdown.OptionData(branch.name));
+    //        }
+    //    }
 
-        foreach (var option in branch.options)
-        {
-            if (Facade.branchs.All(x => x.name != option.text))
-            {
-                branch.options.Remove(option);
-            }
-        }
+    //    foreach (var option in branch.options)
+    //    {
+    //        if (Facade.branchs.All(x => x.name != option.text))
+    //        {
+    //            branch.options.Remove(option);
+    //        }
+    //    }
 
-        var index = branch.options.FindIndex(x => x.text == gmData.branch.name);
-        branch.SetValueWithoutNotify(index);
-        branch.RefreshShownValue();
-    }
+    //    var index = branch.options.FindIndex(x => x.text == gmData.branch.name);
+    //    branch.SetValueWithoutNotify(index);
+    //    branch.RefreshShownValue();
+    //}
 }

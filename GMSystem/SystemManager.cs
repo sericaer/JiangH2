@@ -7,11 +7,15 @@ namespace JiangH
     {
         public SystemBranchProductProcess branchProductProcess;
 
-        public SystemRelationPersonBranch relationPersonBranch;
+        //public SystemRelationPersonBranch relationPersonBranch;
 
-        public SystemRelationBranchBusiness relationBranchBusiness;
+        //public SystemRelationBranchBusiness relationBranchBusiness;
 
-        public SystemRelationBranchSociety relationBranchSociety;
+        //public SystemRelationBranchSociety relationBranchSociety;
+
+        public SystemRelationPersonSociety relationPersonSociety;
+
+        public SystemRelationPersonBusiness relationPersonBusiness;
 
         public SystemManager()
         {
@@ -27,9 +31,12 @@ namespace JiangH
         {
             branchProductProcess = new SystemBranchProductProcess(com2Entitys[typeof(IBranch)]);
 
-            relationPersonBranch = new SystemRelationPersonBranch(relationManager);
-            relationBranchBusiness = new SystemRelationBranchBusiness(relationManager);
-            relationBranchSociety = new SystemRelationBranchSociety(relationManager);
+            //relationPersonBranch = new SystemRelationPersonBranch(relationManager);
+            //relationBranchBusiness = new SystemRelationBranchBusiness(relationManager);
+            //relationBranchSociety = new SystemRelationBranchSociety(relationManager);
+
+            relationPersonSociety = new SystemRelationPersonSociety(relationManager);
+            relationPersonBusiness = new SystemRelationPersonBusiness(relationManager);
         }
     }
 }

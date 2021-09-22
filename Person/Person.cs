@@ -1,26 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace JiangH
 {
     public class Person : Entity, IPerson
     {
-        public IBranch branch
-        {
-            get
-            {
-                var relation = GetRelations<Relation_Person_Branch>().SingleOrDefault();
-                return relation != null ? relation.branch : null;
-            }
-        }
+        //public IBranch branch
+        //{
+        //    get
+        //    {
+        //        var relation = GetRelations<Relation_Person_Branch>().SingleOrDefault();
+        //        return relation != null ? relation.branch : null;
+        //    }
+        //}
 
         public ISociety society
         {
             get
             {
-                return branch != null ? branch.society : null;
+                var relation = GetRelations<Relation_Person_Society>().SingleOrDefault();
+                return relation != null ? relation.society : null;
             }
         }
+
+        public IEnumerable<IBusiness> businesses
+        {
+            get
+            {
+                return GetRelations<Relation_Person_Business>().Select(x => x.business);
+            }
+        }
+
 
         public string fullName { get; set; }
         public int maxBusinessCount { get; private set; }
@@ -43,12 +54,7 @@ namespace JiangH
 
         public double CalcBusinessEfficent()
         {
-            if(branch == null || !branch.businesses.Any())
-            {
-                return 100;
-            }
-
-            var efficent = 100.0 * (maxBusinessCount - branch.businesses.Count()) / maxBusinessCount;
+            var efficent = 100.0 * (maxBusinessCount - businesses.Count()) / maxBusinessCount;
 
             return Math.Max(efficent, 30);
         }

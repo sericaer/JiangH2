@@ -29,17 +29,17 @@ public class SocietyPanel : MonoBehaviour
         }
 
         Name.text = gmData.name;
-        Branch.text = gmData.branches.Count().ToString();
+        //Branch.text = gmData.branches.Count().ToString();
     }
 
-    public void OnBranchClick()
-    {
-        var gmObj = Instantiate(prefabPanelBranch, this.transform.root.GetComponentInChildren<Canvas>().transform);
-        if (gmData != null)
-        {
-            gmObj.GetComponent<BranchTable>().gmData = gmData.branches;
-        }
-    }
+    //public void OnBranchClick()
+    //{
+    //    var gmObj = Instantiate(prefabPanelBranch, this.transform.root.GetComponentInChildren<Canvas>().transform);
+    //    if (gmData != null)
+    //    {
+    //        gmObj.GetComponent<BranchTable>().gmData = gmData.branches;
+    //    }
+    //}
 
     public void OnClickDetail()
     {

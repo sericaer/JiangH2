@@ -8,19 +8,19 @@ namespace JiangH
     {
         public string name { get; private set; }
 
-        public IEnumerable<IBranch> branches
-        {
-            get
-            {
-                return GetRelations<Relation_Branch_Society>().Select(x => x.branch);
-            }
-        }
+        //public IEnumerable<IBranch> branches
+        //{
+        //    get
+        //    {
+        //        return GetRelations<Relation_Branch_Society>().Select(x => x.branch);
+        //    }
+        //}
 
         public IEnumerable<IPerson> persons
         {
             get
             {
-                return branches.SelectMany(x => x.persons);
+                return GetRelations<Relation_Person_Society>().Select(x => x.person);
             }
         }
 
@@ -28,7 +28,7 @@ namespace JiangH
         {
             get
             {
-                return branches.SelectMany(x => x.businesses);
+                return persons.SelectMany(x => x.businesses);
             }
         }
 
