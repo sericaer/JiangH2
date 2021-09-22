@@ -20,7 +20,6 @@ public class BranchPanel : MonoBehaviour
         }
     }
 
-    public Text Name;
     public Text Businesses;
     public Text Person;
     public Text Money;
@@ -44,7 +43,6 @@ public class BranchPanel : MonoBehaviour
             return;
         }
 
-        Name.text = gmData.name;
         Businesses.text = $"{gmData.businesses.Count()}/{gmData.owner.maxBusinessCount}";
 
         var money = gmData.products.SingleOrDefault(x => x.type == ProductType.Money);
