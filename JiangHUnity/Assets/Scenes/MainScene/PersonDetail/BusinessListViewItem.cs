@@ -2,7 +2,7 @@
 using UIWidgets;
 using UnityEngine;
 
-internal class SelectBusinessElement : ListViewItem, IViewData<IBusiness>
+internal class BusinessListViewItem : ListViewItem, IViewData<IBusiness>
 {
     [SerializeField]
     public TextAdapter Text;
