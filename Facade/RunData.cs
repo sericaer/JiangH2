@@ -30,6 +30,7 @@ namespace JiangH
             date = new Date();
 
             entityMgr.AddEntity(Person.Create());
+            entityMgr.AddEntity(Person.Create());
 
             entityMgr.AddEntity(Business.Create());
             entityMgr.AddEntity(Business.Create());
@@ -54,6 +55,8 @@ namespace JiangH
             systemMgr.relationPersonSociety.AddRelation(persons.First(), societies.First());
             systemMgr.relationPersonBusiness.AddRelation(persons.First(), businesses.First());
             systemMgr.relationPersonBusiness.AddRelation(persons.First(), businesses.Last());
+
+            systemMgr.relationPersonSociety.AddRelation(persons.Last(), societies.First());
 
             date.OnDaysInc = ((int y, int m, int d)dateValue) =>
             {

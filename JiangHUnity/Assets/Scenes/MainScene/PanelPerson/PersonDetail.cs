@@ -6,75 +6,72 @@ using UnityEngine.UI;
 
 public class PersonDetail : MonoBehaviour
 {
+
     public IPerson gmData { get; internal set; }
 
-    //public Dropdown branch;
-    //public Text effecient;
+    public GameObject prefabPanelSelectBusiness;
 
-    //public void OnClose()
-    //{
-    //    Destroy(this.gameObject);
-    //}
+    public Text businessCount;
 
-    //public void OnChangedOwnerBranch(string branchName)
-    //{
-    //    var branch = Facade.branchs.Single(x => x.name == branchName);
+    public Text Name;
 
-    //    Facade.system.relationBranchBusiness.AddRelation(branch, gmData);
-    //}
+    public Button btnRevokeBusiness;
+    public Button btnAssignBusiness;
 
-    //// Use this for initialization
-    //void Start()
-    //{
-    //    branch.onValueChanged.AddListener((index) =>
-    //    {
-    //        var select = branch.options[index];
-    //        OnChangedOwnerBranch(select.text);
-    //    });
+    public void OnClose()
+    {
+        Destroy(this.gameObject);
+    }
 
-    //    //effecient.GetComponent<TooltipTrigger>().OnShowTooltip = (trigger) =>
-    //    //{
-    //    //    trigger.tooltip = string.Join("\n", gmData.efficientDetail.Select(x => $"{x.value} {x.desc}"));
-    //    //};
-    //}
+    public void OnRevokeBusiness()
+    {
+        var gmObj = Instantiate(prefabPanelSelectBusiness, this.transform.root.GetComponentInChildren<Canvas>().transform);
+        if (gmObj != null)
+        {
+            gmObj.GetComponentInChildren<SelectBusiness>().DataSource.AddRange(gmData.businesses);
+            gmObj.GetComponentInChildren<SelectBusiness>().OnConfirmSelect = (selectBusiness) =>
+            {
+                foreach (var business in selectBusiness)
+                {
+                    Facade.system.relationPersonBusiness.RemoveRelation(gmData, business);
+                    Facade.system.relationPersonBusiness.AddRelation(Facade.player, business);
+                }
 
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    if (gmData == null)
-    //    {
-    //        return;
-    //    }
+            };
+        }
+    }
 
-    //    UpdateBranch();
-    //    UpdateEfficent();
-    //}
+    public void OnAssignBusiness()
+    {
+        var gmObj = Instantiate(prefabPanelSelectBusiness, this.transform.root.GetComponentInChildren<Canvas>().transform);
+        if (gmObj != null)
+        {
+            gmObj.GetComponentInChildren<SelectBusiness>().DataSource.AddRange(Facade.player.businesses);
+            gmObj.GetComponentInChildren<SelectBusiness>().OnConfirmSelect = (selectBusiness) =>
+            {
+                foreach (var business in selectBusiness)
+                {
+                    Facade.system.relationPersonBusiness.RemoveRelation(Facade.player, business);
+                    Facade.system.relationPersonBusiness.AddRelation(gmData, business);
+                }
+            };
+        }
+    }
 
-    //private void UpdateEfficent()
-    //{
-    //    effecient.text = (100 + gmData.efficientDetail.Sum(x => x.value)).ToString();
-    //}
+    void Update()
+    {
+        if (gmData == null)
+        {
+            return;
+        }
 
-    //private void UpdateBranch()
-    //{
-    //    foreach (var branch in Facade.branchs)
-    //    {
-    //        if (!this.branch.options.Any(x => x.text == branch.name))
-    //        {
-    //            this.branch.options.Add(new Dropdown.OptionData(branch.name));
-    //        }
-    //    }
+        businessCount.text = gmData.businesses.Count().ToString();
+        Name.text = gmData.fullName;
 
-    //    foreach (var option in branch.options)
-    //    {
-    //        if (Facade.branchs.All(x => x.name != option.text))
-    //        {
-    //            branch.options.Remove(option);
-    //        }
-    //    }
-
-    //    var index = branch.options.FindIndex(x => x.text == gmData.branch.name);
-    //    branch.SetValueWithoutNotify(index);
-    //    branch.RefreshShownValue();
-    //}
+        if(gmData == Facade.player)
+        {
+            btnRevokeBusiness.gameObject.SetActive(false);
+            btnAssignBusiness.gameObject.SetActive(false);
+        }
+    }
 }
