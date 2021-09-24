@@ -680,7 +680,7 @@ MonoBehaviour:
   defaultColor: {r: 1, g: 0.84313726, b: 0.4509804, a: 1}
   highlightedBackgroundColor: {r: 0.70980394, g: 0.47843137, b: 0.14117648, a: 255}
   highlightedColor: {r: 0, g: 0, b: 0, a: 1}
-  selectedBackgroundColor: {r: 53, g: 83, b: 227, a: 255}
+  selectedBackgroundColor: {r: 0.76862746, g: 0.6117647, b: 0.15294118, a: 255}
   selectedColor: {r: 0, g: 0, b: 0, a: 1}
   FadeDuration: 0
   scrollRect: {fileID: 5211296038330526755}
@@ -1038,7 +1038,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 5211296037134947094}
   m_OnClick:
     m_PersistentCalls:
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5211296037129042129}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999953
+  m_Size: 0.99998885
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1632,7 +1632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.0005569458}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &5211296038446284464

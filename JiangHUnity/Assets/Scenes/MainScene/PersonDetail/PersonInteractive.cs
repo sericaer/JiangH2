@@ -37,7 +37,7 @@ public class PersonInteractive : MonoBehaviour
                 var gmObj = Instantiate(prefabBusinessSelect, OperationContent.transform);
 
                 var selectBusiness = gmObj.GetComponentInChildren<SelectBusiness>();
-                selectBusiness.listView.DataSource.AddRange(Facade.player.businesses);
+                selectBusiness.gmData = Facade.player.businesses;
 
                 selectBusiness.OnConfirmAction = (businesses) =>
                 {
@@ -46,8 +46,6 @@ public class PersonInteractive : MonoBehaviour
                         Facade.system.relationPersonBusiness.RemoveRelation(Facade.player, business);
                         Facade.system.relationPersonBusiness.AddRelation(gmData, business);
                     }
-
-                    listView.Deselect(listView.SelectedIndex);
                 };
             }
         );
@@ -59,7 +57,7 @@ public class PersonInteractive : MonoBehaviour
                 var gmObj = Instantiate(prefabBusinessSelect, OperationContent.transform);
 
                 var selectBusiness = gmObj.GetComponentInChildren<SelectBusiness>();
-                selectBusiness.listView.DataSource.AddRange(gmData.businesses);
+                selectBusiness.gmData = gmData.businesses;
 
                 selectBusiness.OnConfirmAction = (businesses) =>
                 {
@@ -68,8 +66,6 @@ public class PersonInteractive : MonoBehaviour
                         Facade.system.relationPersonBusiness.RemoveRelation(gmData, business);
                         Facade.system.relationPersonBusiness.AddRelation(Facade.player, business);
                     }
-
-                    listView.Deselect(listView.SelectedIndex);
                 };
             }
         );

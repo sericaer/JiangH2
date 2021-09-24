@@ -15,23 +15,33 @@ class SelectBusiness : MonoBehaviour
 
     public Action<IEnumerable<IBusiness>> OnConfirmAction;
 
+    public IEnumerable<IBusiness> gmData { get; internal set; }
+
     public void OnConfirm()
     {
         OnConfirmAction?.Invoke(listView.SelectedItems);
-        Destroy(this.gameObject);
     }
 
-    void Start()
+    void Update()
     {
-        listView.OnDeselectObject.AddListener((index) =>
+        if(gmData == null)
         {
-            btnConfirm.interactable = listView.SelectedItems.Any();
-        });
+            return;
+        }
 
-        listView.OnSelectObject.AddListener((index) =>
+        var needRemoves = listView.DataSource.Except(gmData);
+        foreach(var remove in needRemoves)
         {
-            btnConfirm.interactable = listView.SelectedItems.Any();
-        });
+            listView.Remove(remove);
+        }
+        
+        var needAdds = gmData.Except(listView.DataSource);
+        foreach (var add in needAdds)
+        {
+            listView.Add(add);
+        }
+
+        btnConfirm.interactable = listView.SelectedItems.Any();
     }
 
 }
