@@ -23,6 +23,14 @@ namespace JiangH
 
         public RunData()
         {
+
+            Person._def = new PersonDef();
+
+            var itlist = new List<IPersonInteractive>();
+            itlist.Add(new GrantBusiness());
+
+            Person._def.interactives = itlist;
+
             entityMgr = new EntityManager();
             systemMgr = new SystemManager();
             relationMgr = new RelationManager();
@@ -63,5 +71,54 @@ namespace JiangH
                 systemMgr.branchProductProcess.OnDaysInc(dateValue);
             };
         }
+    }
+
+    public class GrantBusiness : IPersonInteractive
+    {
+        public IPerson initiator { get; private set; }
+        public IPerson recipient { get; private set; }
+
+        public string name { get; } = "GrantBusiness";
+
+        public Func<object, bool> isTrigger { get; private set; }
+
+        public InteractiveUI ui { get; private set; }
+
+        public Action<object> Do { get; private set; }
+
+        public void Init(IPerson initiator, IPerson recipient)
+        {
+            this.initiator = initiator;
+            this.recipient = recipient;
+        }
+
+        public GrantBusiness()
+        {
+            ui = new GrantBusinessUI();
+
+            isTrigger = _=>
+            {
+                return Facade.player != recipient;
+            };
+
+            Do = (context) =>
+            {
+                var business = context as IBusiness;
+
+                Facade.system.relationPersonBusiness.RemoveRelation(this.initiator, business);
+                Facade.system.relationPersonBusiness.AddRelation(recipient, business);
+            };
+        }
+    }
+
+    public class GrantBusinessUI : InteractiveUI
+    {
+        public string title => "GrantBusiness";
+
+        public string desc => "GrantBusinessDESC";
+
+        public object dataSource { get; internal set; }
+
+        public Action<object> Do { get; internal set; };
     }
 }

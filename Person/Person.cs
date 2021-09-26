@@ -6,6 +6,8 @@ namespace JiangH
 {
     public class Person : Entity, IPerson
     {
+        public static PersonDef _def;
+
         //public IBranch branch
         //{
         //    get
@@ -35,6 +37,8 @@ namespace JiangH
 
         public string fullName { get; set; }
         public int maxBusinessCount { get; private set; }
+
+        public PersonDef def => _def;
 
         //public int maxGuidanceCount { get; private set; }
 

@@ -24,53 +24,78 @@ public class PersonInteractive : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
 
-        dict[listView.SelectedItem].Do();
+        var interactive = gmData.def.interactives.Single(x => x.title == listView.SelectedItem);
+        if(interactive.ui == null)
+        {
+            interactive.Do(null);
+            return;
+        }
+
+        var gmObj = Instantiate(Resources.Load(interactive.ui.uiName), OperationContent.transform) as GameObject;
+
+        var interactiveUI = gmObj.GetComponentInChildren<PersonInteractiveUI>();
+        interactiveUI.OnConfirm = (context)=>
+        {
+            interactive.Do(context);
+            return;
+        };
     }
 
     // Use this for initialization
     void Start()
     {
-        dict["分配产业"] = new InteractiveOperation(
-            isValid: () => gmData != Facade.player,
-            Do: () =>
+        foreach(var elem in gmData.def.interactives)
+        {
+            elem.Init(Facade.player, gmData);
+            if(!elem.isTrigger(null))
             {
-                var gmObj = Instantiate(prefabBusinessSelect, OperationContent.transform);
-
-                var selectBusiness = gmObj.GetComponentInChildren<SelectBusiness>();
-                selectBusiness.gmData = Facade.player.businesses;
-
-                selectBusiness.OnConfirmAction = (businesses) =>
-                {
-                    foreach(var business in businesses)
-                    {
-                        Facade.system.relationPersonBusiness.RemoveRelation(Facade.player, business);
-                        Facade.system.relationPersonBusiness.AddRelation(gmData, business);
-                    }
-                };
+                continue;
             }
-        );
 
-        dict["收回产业"] = new InteractiveOperation(
-            isValid: () => gmData != Facade.player,
-            Do: () =>
-            {
-                var gmObj = Instantiate(prefabBusinessSelect, OperationContent.transform);
+            listView.DataSource.Add(elem.title);
+        }
 
-                var selectBusiness = gmObj.GetComponentInChildren<SelectBusiness>();
-                selectBusiness.gmData = gmData.businesses;
+        //dict["分配产业"] = new InteractiveOperation(
+        //    isValid: () => gmData != Facade.player,
+        //    Do: () =>
+        //    {
+        //        var gmObj = Instantiate(prefabBusinessSelect, OperationContent.transform);
 
-                selectBusiness.OnConfirmAction = (businesses) =>
-                {
-                    foreach (var business in businesses)
-                    {
-                        Facade.system.relationPersonBusiness.RemoveRelation(gmData, business);
-                        Facade.system.relationPersonBusiness.AddRelation(Facade.player, business);
-                    }
-                };
-            }
-        );
+        //        var selectBusiness = gmObj.GetComponentInChildren<SelectBusiness>();
+        //        selectBusiness.gmData = Facade.player.businesses;
 
-        listView.DataSource.AddRange(dict.Keys.Where(x => dict[x].isValid()));
+        //        selectBusiness.OnConfirmAction = (businesses) =>
+        //        {
+        //            foreach(var business in businesses)
+        //            {
+        //                Facade.system.relationPersonBusiness.RemoveRelation(Facade.player, business);
+        //                Facade.system.relationPersonBusiness.AddRelation(gmData, business);
+        //            }
+        //        };
+        //    }
+        //);
+
+        //dict["收回产业"] = new InteractiveOperation(
+        //    isValid: () => gmData != Facade.player,
+        //    Do: () =>
+        //    {
+        //        var gmObj = Instantiate(prefabBusinessSelect, OperationContent.transform);
+
+        //        var selectBusiness = gmObj.GetComponentInChildren<SelectBusiness>();
+        //        selectBusiness.gmData = gmData.businesses;
+
+        //        selectBusiness.OnConfirmAction = (businesses) =>
+        //        {
+        //            foreach (var business in businesses)
+        //            {
+        //                Facade.system.relationPersonBusiness.RemoveRelation(gmData, business);
+        //                Facade.system.relationPersonBusiness.AddRelation(Facade.player, business);
+        //            }
+        //        };
+        //    }
+        //);
+
+        //listView.DataSource.AddRange(dict.Keys.Where(x => dict[x].isValid()));
     }
 
     class InteractiveOperation
